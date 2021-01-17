@@ -1,6 +1,6 @@
 # gattonero_flutter
 
-La nuova App della Sagra del Gatto
+La nuova App della Sagra del Gatto Nero
 
 ## Prova L'app
 
