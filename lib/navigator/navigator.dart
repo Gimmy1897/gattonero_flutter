@@ -141,9 +141,9 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                         child: Text(_label),
                         style: TextButton.styleFrom(
                           primary: Colors.white,
-                          backgroundColor: Colors.lightBlue[500],
+                          backgroundColor: Color(0xff03A9F4),
                           elevation: 1,
-                          textStyle: TextStyle(fontSize: 12),
+                          textStyle: TextStyle(fontSize: 12, height: 1),
                         ),
                         onPressed: () {},
                       ),
