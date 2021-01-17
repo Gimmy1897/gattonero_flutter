@@ -16,6 +16,7 @@ final List<Widget> listapagine = [ListinoPage(), HomePage(), CarrelloPage()];
 class _BottomNavBarState extends State<BottomNavBar> {
   int _page = 1;
   GlobalKey _bottomNavigationKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
-                height: 100.0,
+                height: 80.0,
                 decoration: new BoxDecoration(
                   color: Color(0xff03A9F4),
                   boxShadow: [new BoxShadow(blurRadius: 10.0)],
@@ -82,6 +83,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     //));
   }
 }
+
 /*             ElevatedButton(
                   child: Text('Go To Page of index 2'),
                   onPressed: () {

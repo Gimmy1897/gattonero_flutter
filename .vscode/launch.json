@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "gattonero_flutter",
+            "name": "Sagra del Gatto Nero",
             "request": "launch",
             "type": "dart"
         }
