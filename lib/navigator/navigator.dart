@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'nav_button.dart';
 import 'nav_custom_painter.dart';
+import 'package:gattonero_flutter/res/res.dart';
 
 typedef _LetIndexPage = bool Function(int value);
 
@@ -137,23 +138,18 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 child: Center(
                   child: Column(
                     children: <Widget>[
-                      TextButton(
-                        child: Text(_label),
-                        style: TextButton.styleFrom(
-                          primary: Colors.white,
-                          backgroundColor: Color(0xff03A9F4),
-                          elevation: 1,
-                          textStyle: TextStyle(fontSize: 12, height: 1),
-                        ),
-                        onPressed: () {},
-                      ),
-                      Material(
-                        color: widget.buttonBackgroundColor ?? widget.color,
-                        type: MaterialType.circle,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: _icon,
-                        ),
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Colori.primaryDark,
+                                  Colori.primaryLight
+                                ])),
+                        padding: const EdgeInsets.all(8.0),
+                        child: _icon,
                       ),
                     ],
                   ),
@@ -215,3 +211,21 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
     });
   }
 }
+/*
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 3),
+                        child: Container(
+                          decoration: new BoxDecoration(
+                            borderRadius: new BorderRadius.circular(5),
+                            color: Color(0xff03A9F4),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(7),
+                            child: Text(
+                              _label,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+ */

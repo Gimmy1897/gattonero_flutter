@@ -7,7 +7,12 @@
         {
             "name": "Sagra del Gatto Nero",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "-d",
+                "edge",
+                "--web-port", "80",
+              ]
         }
     ]
 }

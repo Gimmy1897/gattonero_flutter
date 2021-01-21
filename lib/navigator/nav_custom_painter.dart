@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
+import 'package:gattonero_flutter/res/res.dart';
 
 class NavCustomPainter extends CustomPainter {
   double loc;
@@ -13,16 +15,26 @@ class NavCustomPainter extends CustomPainter {
     double l = startingLoc + (span - s) / 2;
     loc = textDirection == TextDirection.rtl ? 0.8 - l : l;
   }
-
+  Rect rect = new Rect.fromCircle(
+    center: new Offset(165.0, 55.0),
+    radius: 180.0,
+  );
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
+      ..style = PaintingStyle.fill
+      ..shader = ui.Gradient.linear(
+        Offset(0, 20),
+        Offset(400, 20),
+        [
+          Colori.primaryDark,
+          Colori.primaryLight,
+        ],
+      );
 
     final path = Path()
       ..moveTo(0, 0)
-      ..lineTo((loc - 0.1) * size.width, 0)
+      ..lineTo((loc - 0.04) * size.width, 0)
       ..cubicTo(
         (loc + s * 0.20) * size.width,
         size.height * 0.05,
@@ -36,7 +48,7 @@ class NavCustomPainter extends CustomPainter {
         size.height * 0.60,
         (loc + s - s * 0.20) * size.width,
         size.height * 0.05,
-        (loc + s + 0.1) * size.width,
+        (loc + s + 0.04) * size.width,
         0,
       )
       ..lineTo(size.width, 0)
