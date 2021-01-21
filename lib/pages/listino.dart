@@ -3,6 +3,7 @@ import 'package:gattonero_flutter/API/httpservice.dart';
 import 'package:gattonero_flutter/pages/tipologie/primi.dart';
 import 'package:gattonero_flutter/res/res.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ListinoPage extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class ListinoPageState extends State<ListinoPage>
         children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width * 0.7,
-            height: 40.0,
+            height: 50.0,
             decoration: new BoxDecoration(
               color: Colors.black.withOpacity(0.2),
               borderRadius: new BorderRadius.vertical(
@@ -45,10 +46,8 @@ class ListinoPageState extends State<ListinoPage>
                 padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                 child: Text(
                   "Sagra Del Gatto Nero",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.white),
+                  style:
+                      GoogleFonts.courgette(fontSize: 23, color: Colors.white),
                 ),
               ),
             ),
@@ -63,10 +62,10 @@ class ListinoPageState extends State<ListinoPage>
                         topRight: Radius.circular(30.0),
                         topLeft: Radius.circular(30.0),
                       )),
-                  margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
                   child: Container(
-                      margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
                       //lista
+                      margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
                       child: FutureBuilder(
                           future: updateListino(),
                           builder:
@@ -97,11 +96,11 @@ class ListinoPageState extends State<ListinoPage>
   }
 
 //Size default delle icone di tipolgia
-  double secondiIconSize = 30;
-  double primiIconSize = 40;
-  double contorniIconSize = 30;
-  double dessertIconSize = 30;
-  double bevandeIconSize = 30;
+  double secondiIconSize = 40;
+  double primiIconSize = 50;
+  double contorniIconSize = 40;
+  double dessertIconSize = 40;
+  double bevandeIconSize = 40;
 //colore default delle icone
   Color bianco = Colors.white;
   Color primiIconColor = Colori.primaryDark;
@@ -124,58 +123,58 @@ class ListinoPageState extends State<ListinoPage>
     if (tipologia != lastModified) {
       switch (lastModified) {
         case 0:
-          primiIconSize = 30;
+          primiIconSize = 40;
           primiIconColor = bianco;
           primiBg = neroAlpha;
           break;
         case 1:
-          secondiIconSize = 30;
+          secondiIconSize = 40;
           secondiIconColor = bianco;
           secondiBg = neroAlpha;
           break;
         case 2:
-          contorniIconSize = 30;
+          contorniIconSize = 40;
           contorniIconColor = bianco;
           contorniBg = neroAlpha;
           break;
         case 3:
-          dessertIconSize = 30;
+          dessertIconSize = 40;
           dessertIconColor = bianco;
           dessertBg = neroAlpha;
           break;
         case 4:
-          bevandeIconSize = 30;
+          bevandeIconSize = 40;
           bevandeIconColor = bianco;
           bevandeBg = neroAlpha;
           break;
       }
       switch (tipologia) {
         case 0:
-          primiIconSize = 40;
+          primiIconSize = 50;
           primiIconColor = Colori.primaryDark;
           primiBg = bianco;
           lastModified = tipologia;
           break;
         case 1:
-          secondiIconSize = 40;
+          secondiIconSize = 50;
           secondiIconColor = Colori.primaryDark;
           secondiBg = bianco;
           lastModified = tipologia;
           break;
         case 2:
-          contorniIconSize = 40;
+          contorniIconSize = 50;
           contorniIconColor = Colori.primaryDark;
           contorniBg = bianco;
           lastModified = tipologia;
           break;
         case 3:
-          dessertIconSize = 40;
+          dessertIconSize = 50;
           dessertIconColor = Colori.primaryDark;
           dessertBg = bianco;
           lastModified = tipologia;
           break;
         case 4:
-          bevandeIconSize = 40;
+          bevandeIconSize = 50;
           bevandeIconColor = Colori.primaryDark;
           bevandeBg = bianco;
           lastModified = tipologia;
@@ -188,8 +187,8 @@ class ListinoPageState extends State<ListinoPage>
   Widget _grigliaTipologie(BuildContext context) {
     var _widthScreen = MediaQuery.of(context).size.width;
     return Container(
-        height: 80,
-        margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+        height: 95,
+        margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
         child: Center(
             child: Stack(children: <Widget>[
           //primi

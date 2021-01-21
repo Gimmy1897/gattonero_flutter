@@ -27,6 +27,7 @@ dependencies:
   hive_flutter: ^0.3.1
   material_design_icons_flutter: 4.0.5855
   responsive_framework: ^0.0.14
+  google_fonts: ^1.1.1
   
 
   # The following adds the Cupertino Icons font to your application.
@@ -67,10 +68,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

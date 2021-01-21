@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gattonero_flutter/res/res.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,10 +40,8 @@ class HomePageState extends State<HomePage> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
                           child: Text(
                             "Sagra Del Gatto Nero",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.white),
+                            style: GoogleFonts.courgette(
+                                fontSize: 23, color: Colors.white),
                           ),
                         ),
                       ),

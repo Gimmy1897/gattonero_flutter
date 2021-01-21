@@ -22,8 +22,8 @@ class CarrelloPageState extends State<CarrelloPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: Center(child: RaisedButton(onPressed: () {
-        HttpService service = new HttpService();
-        service.updateListino();
+        //HttpService service = new HttpService();
+        //service.updateListino();
       })),
     );
   }

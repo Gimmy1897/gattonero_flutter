@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gattonero_flutter/res/res.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
 class Primi extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class Primi extends StatefulWidget {
 }
 
 class PrimiState extends State<Primi> {
+  final formatprezzo = new NumberFormat("#,##0.00", "it_IT");
   @override
   void initState() {
     super.initState();
@@ -48,11 +50,17 @@ class PrimiState extends State<Primi> {
                 ),
               );
             } else if (snapshot.data.length != 0) {
-              return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return listItem(context, index, snapshot);
-                  });
+              return Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30.0),
+                    topLeft: Radius.circular(30.0),
+                  )),
+                  child: ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return listItem(context, index, snapshot);
+                      }));
             } else {
               return Container(
                 child: Center(
@@ -86,14 +94,24 @@ class PrimiState extends State<Primi> {
           Container(
               margin: EdgeInsets.fromLTRB(0, 10, 5, 10),
               child: Text(snapshot.data[index]["Descrizione"],
-                  style: TextStyle(fontSize: 15))),
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(0.7)))),
           Container(
               margin: EdgeInsets.fromLTRB(5, 10, 5, 10),
               child: Align(
                   alignment: Alignment.center,
-                  child: Text(snapshot.data[index]["Prezzo"] + "€",
+                  child: Text(
+                      formatprezzo
+                              .format(
+                                  double.parse(snapshot.data[index]["Prezzo"]))
+                              .toString() +
+                          "€",
                       style: TextStyle(
-                          color: Colori.primaryLight, fontSize: 15)))),
+                          color: Colori.primaryLight,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold)))),
           Expanded(child: Container()),
           Container(
               margin: EdgeInsets.fromLTRB(0, 10, 5, 10),
