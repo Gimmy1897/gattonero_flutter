@@ -4,16 +4,27 @@ import 'package:gattonero_flutter/pages/tipologie/primi.dart';
 import 'package:gattonero_flutter/res/res.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ListinoPage extends StatefulWidget {
   @override
   ListinoPageState createState() => ListinoPageState();
 }
 
+int tipologiaindex = 0;
+int indexListaWidget = 1;
+bool riprova = false;
+
+Future<bool> updateListino() async {
+  HttpService service = new HttpService();
+  return service.updateListino();
+}
+
 class ListinoPageState extends State<ListinoPage>
     with TickerProviderStateMixin {
   @override
   void initState() {
+    updatelistino();
     super.initState();
   }
 
@@ -64,35 +75,52 @@ class ListinoPageState extends State<ListinoPage>
                       )),
                   margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
                   child: Container(
-                      //lista
-                      margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
-                      child: FutureBuilder(
-                          future: updateListino(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            //print(snapshot.data);
-                            if (snapshot.data == null) {
-                              //print(snapshot);
-                              return Container(
-                                child: Center(
-                                  child: new CircularProgressIndicator(),
-                                ),
-                              );
-                            } else {
-                              return listatipologie[0];
-                            }
-                          })))),
+                    //lista
+                    margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
+
+                    child: listawidget[indexListaWidget],
+                  ))),
         ],
       ),
     ));
   }
 
-  final List<Widget> listatipologie = [Primi()];
-  int tipologiaindex = 0;
+  riprovaAlert() {
+    Alert(
+      context: context,
+      type: AlertType.error,
+      title: "Errore",
+      desc: "La connessione è debole o assente, riprova",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Riprova",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () {
+            updatelistino();
+            Navigator.pop(context);
+          },
+          width: 120,
+        )
+      ],
+    ).show();
+  }
 
-  Future<bool> updateListino() async {
-    HttpService service = new HttpService();
-    return service.updateListino();
+  Future updatelistino() async {
+    bool check = await updateListino();
+    print("conn: " + check.toString());
+    if (check) {
+      setState(() {
+        indexListaWidget = 0;
+      });
+    } else if (!check) {
+      riprovaAlert();
+    } else {
+      setState(() {
+        indexListaWidget = 1;
+      });
+    }
   }
 
 //Size default delle icone di tipolgia
@@ -352,7 +380,15 @@ class ListinoPageState extends State<ListinoPage>
                       ])))),
         ])));
   }
+
+  List<Widget> listawidget = [listatipologie[tipologiaindex], progressbar()];
 }
+
+Widget progressbar() {
+  return Center(child: CircularProgressIndicator());
+}
+
+final List<Widget> listatipologie = [Primi()];
 
 /*child: ListView.builder(
             itemCount: lista.length,

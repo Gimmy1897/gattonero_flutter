@@ -46,7 +46,7 @@ class PrimiState extends State<Primi> {
             if (snapshot.data == null) {
               return Container(
                 child: Center(
-                  child: Text("attendere..."),
+                  child: new CircularProgressIndicator(),
                 ),
               );
             } else if (snapshot.data.length != 0) {

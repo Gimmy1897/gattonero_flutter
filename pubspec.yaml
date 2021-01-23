@@ -28,6 +28,8 @@ dependencies:
   material_design_icons_flutter: 4.0.5855
   responsive_framework: ^0.0.14
   google_fonts: ^1.1.1
+  dio: 3.0.10
+  rflutter_alert: ^1.1.0
   
 
   # The following adds the Cupertino Icons font to your application.

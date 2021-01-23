@@ -5,6 +5,7 @@ import 'package:gattonero_flutter/main.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 const baseUrl = "https://www.assassieglio.altervista.org/api/Listino.php";
 bool isconnected = false;
@@ -25,6 +26,7 @@ class HttpService {
     //controllo se le box sono vuote, orgo se è vuota va sempre aggiornata(primo avvio dell'app o dati cancellati)
     //se vuoto
     if (!primiBox.isNotEmpty) {
+      //print(await checkConnection());
       await checkConnection();
       if (isconnected) {
         await saveListino();
@@ -42,8 +44,8 @@ class HttpService {
         //i dati non sono ancora stati aggiornati all'apertura
       } else {
         //controllo la connessione
-        await checkConnection();
         //sono connessio allora aggiorno e modifico la bool isupdated
+        await checkConnection();
         if (isconnected) {
           await saveListino();
           BottomNavBar.isupdated = true;
@@ -99,29 +101,20 @@ class HttpService {
     return true;
   }
 
-  checkConnection() async {
-    int timeout = 5;
+  Future checkConnection() async {
+    Response response;
     try {
-      http.Response response = await http
-          .get('https://www.assassieglio.altervista.org/api/check.php')
-          .timeout(Duration(seconds: timeout));
+      response =
+          await Dio().get('https://assassieglio.altervista.org/api/check.php');
       if (response.statusCode == 200) {
         isconnected = true;
       } else {
         isconnected = false;
       }
-    } on TimeoutException catch (e) {
-      print('Timeout Error: $e');
-    } on SocketException catch (b) {
-      print('Socket Error: $b');
-    } on Error catch (c) {
-      print('General Error: $c');
-    }
-  }
-
-  createBox() async {
-    try {} catch (Exception) {
-      print(Exception.toString());
+    } on SocketException catch (e) {
+      throw SocketException(e.toString());
+    } on DioError catch (e) {
+      print(e);
     }
   }
 }
